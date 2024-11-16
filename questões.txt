@@ -302,7 +302,7 @@ Questions = [
         option2: "20 segundos",
         option3: "24 segundos",
         option4:"30 segundos",
-        option5: "60 segundos",
+        option5: "10 segundos",
         answer: "24 segundos",
         explanation: "No basquete, uma equipe tem 24 segundos para tentar um arremesso que toque o aro, evitando o “estouro do cronômetro de posse.” Isso acelera o jogo, promovendo ataques rápidos e equilíbrio entre ataque e defesa.",
         hint: ["Fique atento ao ritmo do jogo! O tempo de posse é pensado para que as jogadas sejam rápidas e dinâmicas, evitando que o time ataque devagar."]
