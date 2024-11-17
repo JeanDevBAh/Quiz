@@ -24,7 +24,7 @@ def jogo():
             if seleção == 1:
                   fixas(questions)
             elif seleção == 2:
-                  Ltempo(questions)
+                  Ltempo(questions, 306)
             elif seleção == 3: 
                   Aterrar(questions)
             elif seleção == 0:
@@ -42,9 +42,9 @@ def fixas(questions):
       aux = 0
       os.system('cls')
       print('-=-=-=-=-=-=Questões fixas-=-=-=-=-=-=\n\n'
-            'Neste modo você enfrentará um número fixo de questões(atualmente 6)\n\n'
+            'Neste modo você enfrentará 15 questões\n\n'
             'Acerte quantas puder para maiores pontuações!')
-      for i in range (1, 0, -1):
+      for i in range (5, 0, -1):
             print(f'\r{i}...', end='')
             time.sleep(1)
       os.system('cls')
@@ -199,21 +199,23 @@ def fixas(questions):
             if pontos // 60 != aux and ajudas < 3:
                   ajudas +=1
                   aux += 1
-            for i in range (1, 0, -1):
+            for i in range (10, 0, -1):
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             os.system('cls')
 
-def Ltempo(questions):
+def Ltempo(questions,tempo_limite):
       caracteres = 70
       pontos = 0
       ajudas = 3
       aux = 0
+      start_time = time.time()
+      end_time = start_time + tempo_limite
       os.system('cls')
-      print('-=-=-=-=-=-=Questões fixas-=-=-=-=-=-=\n\n'
-            'Neste modo você enfrentará um número fixo de questões(atualmente 6)\n\n'
-            'Acerte quantas puder para maiores pontuações!')
-      for i in range (1, 0, -1):
+      print('-=-=-=-=-=-=Limite de Tempo-=-=-=-=-=-=\n\n'
+            'Neste modo você enfrentará 15 questões com 5 minutos de limite de tempo!\n\n'
+            'Acerte no melhor tempo para maiores pontuações!')
+      for i in range (5, 0, -1):
             print(f'\r{i}...', end='')
             time.sleep(1)
       os.system('cls')
@@ -236,6 +238,13 @@ def Ltempo(questions):
             print('9-Ajuda')
             print(f'                                                                PONTOS:{pontos}\n'
                   f'                                                                AJUDAS:{ajudas}')
+            if time.time() > end_time:
+                  print("\nTempo esgotado! Fim do jogo.")
+                  time.sleep(2)
+                  break
+            tempo_restante = int(end_time - time.time())
+            print(f"\nTempo restante: {tempo_restante} segundos")
+
             while True:
                   resp = input('Insira a alternativa: ').strip().upper()
                   if resp == 'A':
@@ -247,10 +256,6 @@ def Ltempo(questions):
                               break
                         else:
                               print('\nErrado\n')
-                              errado = True
-                              texto_quebrado = textwrap.fill(Qatual['explanation'], width=caracteres)
-                              print(texto_quebrado)
-                              break
                   elif resp == 'B':
                         if B == Qatual['answer']:
                               print('\nResposta Correta!\n')
@@ -260,10 +265,6 @@ def Ltempo(questions):
                               break
                         else:
                               print('\nErrado\n')
-                              errado = True
-                              texto_quebrado = textwrap.fill(Qatual['explanation'], width=caracteres)
-                              print(texto_quebrado)
-                              break
                   elif resp == 'C':
                         if C == Qatual['answer']:
                               print('\nResposta Correta!\n')
@@ -273,10 +274,6 @@ def Ltempo(questions):
                               break
                         else:
                               print('\nErrado\n')
-                              errado = True
-                              texto_quebrado = textwrap.fill(Qatual['explanation'], width=caracteres)
-                              print(texto_quebrado)
-                              break
                   elif resp == 'D':
                         if D == Qatual['answer']:
                               print('\nResposta Correta!\n')
@@ -286,10 +283,6 @@ def Ltempo(questions):
                               break
                         else:
                               print('\nErrado\n')
-                              errado = True
-                              texto_quebrado = textwrap.fill(Qatual['explanation'], width=caracteres)
-                              print(texto_quebrado)
-                              break
                   elif resp == 'E':
                         if E == Qatual['answer']:
                               print('\nResposta Correta!\n')
@@ -299,10 +292,6 @@ def Ltempo(questions):
                               break
                         else:
                               print('\nErrado\n')
-                              errado = True
-                              texto_quebrado = textwrap.fill(Qatual['explanation'], width=caracteres)
-                              print(texto_quebrado)
-                              break
                   elif resp == '9':
                         while True:
                               if ajudas > 0:
@@ -368,7 +357,7 @@ def Ltempo(questions):
             if pontos // 60 != aux and ajudas < 3:
                   ajudas +=1
                   aux += 1
-            for i in range (1, 0, -1):
+            for i in range (5, 0, -1):
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             os.system('cls')
@@ -378,11 +367,12 @@ def Aterrar(questions):
       pontos = 0
       ajudas = 3
       aux = 0
+      errado = False
       os.system('cls')
-      print('-=-=-=-=-=-=Questões fixas-=-=-=-=-=-=\n\n'
-            'Neste modo você enfrentará um número fixo de questões(atualmente 6)\n\n'
-            'Acerte quantas puder para maiores pontuações!')
-      for i in range (1, 0, -1):
+      print('-=-=-=-=-=-=Até Errar-=-=-=-=-=-=\n\n'
+            'Neste modo você enfrentará todas as questões do jogo até errar!\n\n'
+            'Boa sorte!')
+      for i in range (5, 0, -1):
             print(f'\r{i}...', end='')
             time.sleep(1)
       os.system('cls')
@@ -537,7 +527,7 @@ def Aterrar(questions):
             if pontos // 60 != aux and ajudas < 3:
                   ajudas +=1
                   aux += 1
-            for i in range (1, 0, -1):
+            for i in range (10, 0, -1):
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             if errado == True:
