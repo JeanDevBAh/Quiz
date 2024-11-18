@@ -8,11 +8,12 @@ def jogo():
       while True:
             os.system('cls')
             print('-=-=-=-=AskMe-=-=-=-=\n')
-            print('Selecione o modo de jogo:\n\n'
+            print('Selecione o modo:\n\n'
                   '1-Questões Fixas\n\n'
                   '2-Limite de Tempo\n\n'
                   '3-Tente não errar\n\n'
-                  '0-Fechar o jogo\n')
+                  '4-Hall da fama\n\n'
+                  '0-Exit\n')
             time.sleep(0.5)
             while True:
                   try:
@@ -31,8 +32,52 @@ def jogo():
                   os.system('cls')
                   print('-=-=-=PROGRAMA ENCERRADO-=-=-=-')
                   break
+            elif seleção == 4:
+                  hall_da_fama()
             else:
                   print('Invalido, tente novamente!')
+                  time.sleep(2)
+
+def hall_da_fama():
+      while True:
+            os.system('cls')
+            print('-=-=-=-=-=HALL DA FAMA=-=-=-=-=-\n\n'
+                  '1-Fixas\n\n'
+                  '2-Tempo\n\n'
+                  '3-Até errar\n\n'
+                  '4-voltar\n')
+            while True:
+                  try:
+                        n = int(input('Selecione o hall: '))
+                        break
+                  except:
+                        print('Invalido, tente novamente.')
+                        time.sleep(2)
+            if n == 1:
+                  with open('Hallf.txt', 'r', encoding='utf-8')as file1:
+                        c1 = file1.read()
+                  print(c1)
+                  for i in range (5, 0, -1):
+                        print(f'\r{i}...', end='')
+                        time.sleep(1)
+            elif n == 2:
+                  with open('Hallt.txt', 'r', encoding='utf-8')as file2:
+                        c2 = file2.read()
+                  print(c2)
+                  for i in range (5, 0, -1):
+                        print(f'\r{i}...', end='')
+                        time.sleep(1)
+            elif n == 3:
+                  with open('Halle.txt', 'r', encoding='utf-8')as file3:
+                        c3 = file3.read()
+                  print(c3)
+                  for i in range (5, 0, -1):
+                        print(f'\r{i}...', end='')
+                        time.sleep(1)
+            elif n == 4:
+                  break
+            else:
+                  print('Invalido, tente novamente.')
                   time.sleep(2)
 
 def fixas(questions): 
@@ -538,7 +583,8 @@ def Aterrar(questions):
 
 
 #Programa principal
-chaves=['category', 'value', 'questionPath', 'questionText', 'option1', 'option2', 'option3', 'option4', 'option5', 'answer', 'explanation', 'hint']
+chaves=['category', 'value', 'questionPath', 'questionText', 'option1', 'option2', 'option3',
+ 'option4', 'option5', 'answer', 'explanation', 'hint']
 with open('questões.txt', 'r', encoding='utf-8') as arquivo:
     conteudo = arquivo.read()
 for key in chaves:
@@ -546,6 +592,15 @@ for key in chaves:
 
 questions = eval(conteudo.split('=')[1])
 
+with open('Hallf.txt', 'w', encoding='utf-8')as file1:
+      for i in range(3):
+            file1.write(f'{i+1}º ####: 0\n')
+with open('Hallt.txt', 'w', encoding='utf-8')as file2:
+      for i in range(3):
+            file2.write(f'{i+1}º ####: 0\n')
+with open('Halle.txt', 'w', encoding='utf-8')as file3:
+      for i in range(3):
+            file3.write(f'{i+1}º ####: 0\n')
 jogo()
 
 
