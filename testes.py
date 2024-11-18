@@ -1,4 +1,4 @@
-with open('questões.txt', 'r', encoding='utf-8') as arquivo:
-    conteudo = arquivo.read()
-
-questions = eval(str(conteudo.split('=')[1]))
+c=10
+for i in range(c):
+    print(c)
+    c+=1
