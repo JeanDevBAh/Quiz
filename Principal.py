@@ -93,7 +93,7 @@ def fixas(questions):
             print(f'\r{i}...', end='')
             time.sleep(1)
       os.system('cls')
-      fix = 2
+      fix = 15
       for i in range(fix):
             Qatual = random.choice(questions)
             questions.remove(Qatual)
