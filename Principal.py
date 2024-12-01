@@ -57,21 +57,21 @@ def hall_da_fama():
                   with open('Hallf.txt', 'r', encoding='utf-8')as file1:
                         c1 = file1.read()
                   print(f'\n{c1}')
-                  for i in range (5, 0, -1):
+                  for i in range (8, 0, -1):
                         print(f'\r{i}...', end='')
                         time.sleep(1)
             elif n == 2:
                   with open('Hallt.txt', 'r', encoding='utf-8')as file2:
                         c2 = file2.read()
                   print(f'\n{c2}')
-                  for i in range (5, 0, -1):
+                  for i in range (8, 0, -1):
                         print(f'\r{i}...', end='')
                         time.sleep(1)
             elif n == 3:
                   with open('Halle.txt', 'r', encoding='utf-8')as file3:
                         c3 = file3.read()
                   print(f'\n{c3}')
-                  for i in range (5, 0, -1):
+                  for i in range (8, 0, -1):
                         print(f'\r{i}...', end='')
                         time.sleep(1)
             elif n == 4:
@@ -248,34 +248,7 @@ def fixas(questions):
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             os.system('cls')
-      with open('Hallt.txt', 'r',encoding='utf-8') as file:
-            cont = file.readlines()
-      rank = []
-      for l in cont:
-            posicao, nome, pontuacao = l.strip().split(":")
-            rank.append({"posicao": posicao, "nome": nome, "pontuacao": int(pontuacao)})
-      rank1 = rank[0]
-      rank2 = rank[1]
-      rank3 = rank[2]   
-      if pontos > rank1['pontuacao'] and rank1['pontuacao'] == 0:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'] = pontos
-            rank1['nome'] = input('Digite seu nome: ') 
-      elif pontos > rank1['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'], rank2['pontuacao'], rank3['pontuacao'] = pontos , rank1['pontuacao'], rank2['pontuacao']
-            rank1['nome'], rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank1['nome'], rank2['nome']
-      elif pontos > rank2['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank2['pontuacao'], rank3['pontuacao'] = pontos , rank2['pontuacao']
-            rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank2['nome']
-      elif pontos > rank3['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank3['pontuacao'] = pontos
-            rank3['nome'] = input('Digite seu nome: ') 
-      with open('Hallf.txt', 'w',encoding='utf-8') as file:
-            for p in rank:
-                  file.write(f'{p['posicao']}: {p['nome']}: {p['pontuacao']} pontos\n')
+      atualizar_ranking('Hallf.txt', pontos)
       while True:
             try:
                   rsp=int(input('Jogar novamente? 1-Sim | 2-Não: '))
@@ -292,12 +265,12 @@ def fixas(questions):
 def regenerar():
       chaves=['category', 'value', 'questionPath', 'questionText', 'option1', 'option2', 'option3',
       'option4', 'option5', 'answer', 'explanation', 'hint']
-      with open('questões.txt', 'r', encoding='utf-8') as arquivo:
+      with open('Banco_de_Questões', 'r', encoding='utf-8') as arquivo:
             conteudo = arquivo.read()
       for key in chaves:
             conteudo = conteudo.replace(key, f"'{key}'")
 
-      questions = eval(conteudo.split('=')[1])
+      questions = eval(conteudo[12:])
       return questions
 
 def Ltempo(questions,tempo_limite):
@@ -457,39 +430,7 @@ def Ltempo(questions,tempo_limite):
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             os.system('cls')
-      with open('Halle.txt', 'r',encoding='utf-8') as file:
-            cont = file.readlines()
-      rank = []
-      for l in cont:
-            posicao, nome, pontuacao = l.strip().split(":")
-            rank.append({"posicao": posicao, "nome": nome, "pontuacao": int(pontuacao)})
-      rank1 = rank[0]
-      rank2 = rank[1]
-      rank3 = rank[2]   
-      rank1['pontuacao'] = 999999999999
-      rank2['pontuacao'] = 999999999999
-      rank3['pontuacao'] = 999999999999
-      if tempo_restante < rank1['pontuacao'] and rank1['pontuacao'] == 999999999999:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'] = tempo_restante
-            rank1['nome'] = input('Digite seu nome: ') 
-      elif tempo_restante < rank1['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'], rank2['pontuacao'], rank3['pontuacao'] = tempo_restante , rank1['pontuacao'], rank2['pontuacao']
-            rank1['nome'], rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank1['nome'], rank2['nome']
-      elif tempo_restante < rank2['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank2['pontuacao'], rank3['pontuacao'] = tempo_restante , rank2['pontuacao']
-            rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank2['nome']
-      elif tempo_restante < rank3['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank3['pontuacao'] = tempo_restante
-            rank3['nome'] = input('Digite seu nome: ') 
-      with open('Halle.txt', 'w',encoding='utf-8') as file:
-            for p in rank:
-                  if p['pontuacao'] == 999999999999:
-                        p['pontuacao'] == 0
-                  file.write(f'{p['posicao']}: {p['nome']}: {p['pontuacao']}s\n')
+      RankTempo('Hallt.txt', tempo_restante)
       while True:
             try:
                   rsp=int(input('Jogar novamente? 1-Sim | 2-Não: '))
@@ -517,7 +458,6 @@ def Aterrar(questions):
             print(f'\r{i}...', end='')
             time.sleep(1)
       os.system('cls')
-      fixas = 15
       while questions:
             Qatual = random.choice(questions)
             questions.remove(Qatual)
@@ -674,34 +614,7 @@ def Aterrar(questions):
             if errado == True:
                   break
             os.system('cls')
-      with open('Halle.txt', 'r',encoding='utf-8') as file:
-            cont = file.readlines()
-      rank = []
-      for l in cont:
-            posicao, nome, pontuacao = l.strip().split(":")
-            rank.append({"posicao": posicao, "nome": nome, "pontuacao": int(pontuacao)})
-      rank1 = rank[0]
-      rank2 = rank[1]
-      rank3 = rank[2]   
-      if pontos > rank1['pontuacao'] and rank1['pontuacao'] == 0:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'] = pontos
-            rank1['nome'] = input('Digite seu nome: ') 
-      elif pontos > rank1['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank1['pontuacao'], rank2['pontuacao'], rank3['pontuacao'] = pontos , rank1['pontuacao'], rank2['pontuacao']
-            rank1['nome'], rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank1['nome'], rank2['nome']
-      elif pontos > rank2['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank2['pontuacao'], rank3['pontuacao'] = pontos , rank2['pontuacao']
-            rank2['nome'], rank3['nome'] = input('Digite seu nome: ') , rank2['nome']
-      elif pontos > rank3['pontuacao']:
-            print('Parabens você entrou para o hall da fama!\n\n')
-            rank3['pontuacao'] = pontos
-            rank3['nome'] = input('Digite seu nome: ') 
-      with open('Halle.txt', 'w',encoding='utf-8') as file:
-            for p in rank:
-                  file.write(f'{p['posicao']}: {p['nome']}: {p['pontuacao']} pontos\n')
+      atualizar_ranking('Halle.txt', pontos)
       while True:
             try:
                   rsp=int(input('Jogar novamente? 1-Sim | 2-Não: '))
@@ -715,28 +628,83 @@ def Aterrar(questions):
             questions = regenerar()
             Aterrar(questions)
 
+def lerRank(caminho):
+    with open(caminho, "r") as arquivo:
+        linhas = arquivo.readlines()
+    ranking = []
+    for linha in linhas:
+        posicao, nome, pontuacao = linha.strip().split(":")
+        ranking.append({"posicao": int(posicao), "nome": nome, "pontuacao": int(pontuacao)})
+    return ranking
+
+def salvarRank(caminho, ranking):
+    with open(caminho, "w") as arquivo:
+        for jogador in ranking:
+            arquivo.write(f"{jogador['posicao']}: {jogador['nome']}: {jogador['pontuacao']}\n")
+
+def atualizar_ranking(caminho, pontuacao):
+    ranking = lerRank(caminho)
+    
+    menor_pontuacao = min(ranking, key=lambda x: x["pontuacao"])
+    if pontuacao > menor_pontuacao["pontuacao"]:
+        print(f"Você entrou no ranking! Substituindo {menor_pontuacao['nome']} com {menor_pontuacao['pontuacao']} pontos.")
+        
+        nome = input("Digite seu nome: ")
+        ranking.append({"posicao": 0, "nome": nome, "pontuacao": pontuacao})
+        
+        
+        ranking = sorted(ranking, key=lambda x: x["pontuacao"], reverse=True)
+        ranking = ranking[:10]
+        for i, jogador in enumerate(ranking, start=1):
+            jogador["posicao"] = i
+        
+        salvarRank(caminho, ranking)
+        print("Ranking atualizado com sucesso!")
+    else:
+        print("Sua pontuação não foi suficiente para entrar no ranking.")
+
+def RankTempo(caminho, tempoSobrando):
+    ranking = lerRank(caminho)
+    
+    maiorTempo = max(ranking, key=lambda x: x["pontuacao"])
+    if tempoSobrando < maiorTempo["pontuacao"]:
+       print(f"Você entrou no ranking! Substituindo {maiorTempo['nome']} com {maiorTempo['pontuacao']} segundos.")
+        
+       nome = input("Digite seu nome: ")
+       ranking.append({"posicao": 0, "nome": nome, "pontuacao": tempoSobrando})
+        
+       ranking = sorted(ranking, key=lambda x: x["pontuacao"])
+       ranking = ranking[:10]
+       for i, jogador in enumerate(ranking, start=1):
+            jogador["posicao"] = i
+        
+       salvarRank(caminho, ranking)
+       print("Ranking atualizado com sucesso!")
+    else:
+        print("Sua pontuação não foi suficiente para entrar no ranking.")
+
 #Programa principal
 chaves=['category', 'value', 'questionPath', 'questionText', 'option1', 'option2', 'option3',
  'option4', 'option5', 'answer', 'explanation', 'hint']
-with open('questões.txt', 'r', encoding='utf-8') as arquivo:
+with open('Banco_de_Questões.txt', 'r', encoding='utf-8') as arquivo:
     conteudo = arquivo.read()
 for key in chaves:
       conteudo = conteudo.replace(key, f"'{key}'")
 
-questions = eval(conteudo.split('=')[1])
+questions = eval(conteudo[12:])
 
 if not os.path.exists('Hallf.txt'):
       with open('Hallf.txt', 'w', encoding='utf-8')as file1:
-            for i in range(3):
-                  file1.write(f'{i+1}º: ###: 0\n')
+            for i in range(10):
+                  file1.write(f'{i+1}: ###: 0\n')
 if not os.path.exists('Hallt.txt'):
       with open('Hallt.txt', 'w', encoding='utf-8')as file2:
-            for i in range(3):
-                  file2.write(f'{i+1}º: ###: 0\n')
+            for i in range(10):
+                  file2.write(f'{i+1}: ###: 999\n')
 if not os.path.exists('Halle.txt'):
       with open('Halle.txt', 'w', encoding='utf-8')as file3:
-            for i in range(3):
-                  file3.write(f'{i+1}º: ###: 0\n')
+            for i in range(10):
+                  file3.write(f'{i+1}: ###: 0\n')
 jogo()
 
 

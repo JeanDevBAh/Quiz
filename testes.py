@@ -1,7 +1,9 @@
-with open('Hallt.txt', 'r',encoding='utf-8') as file:
-            cont = file.readlines()
-rank = []
-for l in cont:
-        posicao, nome, pontuacao = l.strip().split(":")
-        rank.append({"posicao": posicao, "nome": nome, "pontuacao": int(pontuacao)})
-print(rank)
+
+chaves=['category', 'value', 'questionPath', 'questionText', 'option1', 'option2', 'option3',
+ 'option4', 'option5', 'answer', 'explanation', 'hint']
+with open('questões.txt', 'r', encoding='utf-8') as arquivo:
+    conteudo = arquivo.read()
+for key in chaves:
+      conteudo = conteudo.replace(key, f"'{key}'")
+questions = eval(conteudo[12:])
+print(questions)
