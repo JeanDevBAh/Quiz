@@ -74,6 +74,7 @@ def hall_da_fama(): #Menu para o acesso aos halls de cada modo de jogo.
                         print(f'\r{i}...', end='')
                         time.sleep(1)
             elif n == 2: #Hall de Tempo
+                  print('Pontuação equivalente ao tempo em segundos que cada jogador fez o modo\n')
                   with open('Hallt.txt', 'r', encoding='utf-8')as file2:
                         c2 = file2.read()
                   print(f'\n{c2}')
@@ -438,7 +439,7 @@ def Ltempo(questions,tempo_limite): #Modo de jogo de tempo recebe a lista de que
                   print(f'\r{i}...', end='')
                   time.sleep(1)
             os.system('cls')
-      RankTempo('Hallt.txt', tempo_restante) #O hall da fama deste modo usa de uma logica contraria aos outros.
+      RankTempo('Hallt.txt', 300-tempo_restante) #O hall da fama deste modo usa de uma logica contraria aos outros.
       while True:
             try:
                   rsp=int(input('Jogar novamente? 1-Sim | 2-Não: '))
